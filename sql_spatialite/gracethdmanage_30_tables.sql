@@ -137,10 +137,7 @@ CREATE TABLE t_mg_rg (rg_prefix VARCHAR(2)
 	, rg_or_usr VARCHAR(20)     
 	, rg_datt DATE     
 	, rg_dattend DATE     
-	, rg_r1 VARCHAR(10)     
-	, rg_r2 VARCHAR(10)     
-	, rg_r3 VARCHAR(10)     
-	, rg_r4 VARCHAR(10)     
+	, rg_rx_code VARCHAR(254)     REFERENCES t_mg_rx(rx_code)
 	, rg_ex VARCHAR(254)     
 	, rg_regex VARCHAR(254)     
 	, rg_comment VARCHAR(254)     
@@ -165,23 +162,6 @@ CREATE TABLE t_mg_tr (tr_code VARCHAR(254) NOT NULL
 	, tr_abddate DATE     
 	, tr_abdsrc VARCHAR(254)     
 ,CONSTRAINT "tr_code_pk" PRIMARY KEY (tr_code));	
-CREATE TABLE t_mg_xg (xg_code VARCHAR(254) NOT NULL	
-	, xg_codeext VARCHAR(254)     
-	, xg_or_out VARCHAR(20) NOT NULL    REFERENCES t_organisme(or_code)
-	, xg_or_in VARCHAR(20) NOT NULL    REFERENCES t_organisme(or_code)
-	, xg_rx_code VARCHAR(254)     REFERENCES t_mg_rx(rx_code)
-	, xg_pj_code VARCHAR(254)     REFERENCES t_mg_pj(pj_code)
-	, xg_ref VARCHAR(254)     
-	, xg_track INTEGER     
-	, xg_dateout TIMESTAMP     
-	, xg_datein TIMESTAMP     
-	, xg_comment VARCHAR(254)     
-	, xg_creadat TIMESTAMP     
-	, xg_majdate TIMESTAMP     
-	, xg_majsrc VARCHAR(254)     
-	, xg_abddate DATE     
-	, xg_abdsrc VARCHAR(254)     
-,CONSTRAINT "xg_code_pk" PRIMARY KEY (xg_code));	
 CREATE TABLE t_mg_kt (kt_code VARCHAR(254) NOT NULL	
 	, kt_codeext VARCHAR(254)     
 	, kt_nom VARCHAR(254)     
@@ -216,6 +196,23 @@ CREATE TABLE t_mg_px (px_pj_code VARCHAR(254) NOT NULL
 	, px_abddate DATE     
 	, px_abdsrc VARCHAR(254)     
 ,CONSTRAINT "px_pj_code_pk" PRIMARY KEY (px_pj_code,px_rx_code));	
+CREATE TABLE t_mg_xg (xg_code VARCHAR(254) NOT NULL	
+	, xg_codeext VARCHAR(254)     
+	, xg_or_out VARCHAR(20) NOT NULL    REFERENCES t_organisme(or_code)
+	, xg_or_in VARCHAR(20) NOT NULL    REFERENCES t_organisme(or_code)
+	, xg_rx_code VARCHAR(254)     REFERENCES t_mg_rx(rx_code)
+	, xg_pj_code VARCHAR(254)     REFERENCES t_mg_pj(pj_code)
+	, xg_ref VARCHAR(254)     
+	, xg_track INTEGER     
+	, xg_dateout TIMESTAMP     
+	, xg_datein TIMESTAMP     
+	, xg_comment VARCHAR(254)     
+	, xg_creadat TIMESTAMP     
+	, xg_majdate TIMESTAMP     
+	, xg_majsrc VARCHAR(254)     
+	, xg_abddate DATE     
+	, xg_abdsrc VARCHAR(254)     
+,CONSTRAINT "xg_code_pk" PRIMARY KEY (xg_code));	
 CREATE TABLE t_mg_ot (ot_code VARCHAR(254) NOT NULL	
 	, ot_codeext VARCHAR(254)     
 	, ot_nom VARCHAR(254)     
